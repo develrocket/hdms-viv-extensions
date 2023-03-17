@@ -4,10 +4,10 @@
   "author": "Ilan Gold",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hms-dbmi/viv.git"
+    "url": "git+https://github.com/develrocket/my-viv.git"
   },
   "license": "MIT",
-  "homepage": "https://github.com/hms-dbmi/viv#readme",
+  "homepage": "https://github.com/develrocket/my-viv#readme",
   "type": "module",
   "main": "src/index.js",
   "publishConfig": {
