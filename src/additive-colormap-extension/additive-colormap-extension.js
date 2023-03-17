@@ -41,6 +41,16 @@ vec4 colormap(float intensity) {
   intensityCombo += max(0.,intensity3);
   intensityCombo += max(0.,intensity4);
   intensityCombo += max(0.,intensity5);
+  intensityCombo += max(0.,intensity6);
+  intensityCombo += max(0.,intensity7);
+  intensityCombo += max(0.,intensity8);
+  intensityCombo += max(0.,intensity9);
+  intensityCombo += max(0.,intensity10);
+  intensityCombo += max(0.,intensity11);
+  intensityCombo += max(0.,intensity12);
+  intensityCombo += max(0.,intensity13);
+  intensityCombo += max(0.,intensity14);
+  intensityCombo += max(0.,intensity15);
   rgba = colormap(intensityCombo);`
     }
   };

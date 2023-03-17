@@ -1415,6 +1415,16 @@ vec4 colormap(float intensity) {
   intensityCombo += max(0.,intensity3);
   intensityCombo += max(0.,intensity4);
   intensityCombo += max(0.,intensity5);
+  intensityCombo += max(0.,intensity6);
+  intensityCombo += max(0.,intensity7);
+  intensityCombo += max(0.,intensity8);
+  intensityCombo += max(0.,intensity9);
+  intensityCombo += max(0.,intensity10);
+  intensityCombo += max(0.,intensity11);
+  intensityCombo += max(0.,intensity12);
+  intensityCombo += max(0.,intensity13);
+  intensityCombo += max(0.,intensity14);
+  intensityCombo += max(0.,intensity15);
   rgba = colormap(intensityCombo);`
     }
   };
@@ -1462,17 +1472,27 @@ const fs$1 = `uniform vec3 transparentColor;
 uniform bool useTransparentColor;
 uniform float opacity;
 
-uniform vec3 colors[6];
+uniform vec3 colors[16];
 
 ${apply_transparent_color}
 
-void mutate_color(inout vec3 rgb, float intensity0, float intensity1, float intensity2, float intensity3, float intensity4, float intensity5) { 
+void mutate_color(inout vec3 rgb, float intensity0, float intensity1, float intensity2, float intensity3, float intensity4, float intensity5, float intensity6, float intensity7, float intensity8, float intensity9, float intensity10, float intensity11, float intensity12, float intensity13, float intensity14, float intensity15) { 
   rgb += max(0.0, min(1.0, intensity0)) * vec3(colors[0]);
   rgb += max(0.0, min(1.0, intensity1)) * vec3(colors[1]);
   rgb += max(0.0, min(1.0, intensity2)) * vec3(colors[2]);
   rgb += max(0.0, min(1.0, intensity3)) * vec3(colors[3]);
   rgb += max(0.0, min(1.0, intensity4)) * vec3(colors[4]);
   rgb += max(0.0, min(1.0, intensity5)) * vec3(colors[5]);
+  rgb += max(0.0, min(1.0, intensity6)) * vec3(colors[6]);
+  rgb += max(0.0, min(1.0, intensity7)) * vec3(colors[7]);
+  rgb += max(0.0, min(1.0, intensity8)) * vec3(colors[8]);
+  rgb += max(0.0, min(1.0, intensity9)) * vec3(colors[9]);
+  rgb += max(0.0, min(1.0, intensity10)) * vec3(colors[10]);
+  rgb += max(0.0, min(1.0, intensity11)) * vec3(colors[11]);
+  rgb += max(0.0, min(1.0, intensity12)) * vec3(colors[12]);
+  rgb += max(0.0, min(1.0, intensity13)) * vec3(colors[13]);
+  rgb += max(0.0, min(1.0, intensity14)) * vec3(colors[14]);
+  rgb += max(0.0, min(1.0, intensity15)) * vec3(colors[15]);
 }
 
 vec4 apply_opacity(vec3 rgb) {
@@ -1480,7 +1500,7 @@ vec4 apply_opacity(vec3 rgb) {
 }
 `;
 const DECKGL_MUTATE_COLOR = `vec3 rgb = rgba.rgb;
-mutate_color(rgb, intensity0, intensity1, intensity2, intensity3, intensity4, intensity5);
+mutate_color(rgb, intensity0, intensity1, intensity2, intensity3, intensity4, intensity5, intensity6, intensity7, intensity8, intensity9, intensity10, intensity11, intensity12, intensity13, intensity14, intensity15);
 rgba = apply_opacity(rgb);
 `;
 const colorPalette = {
@@ -1575,7 +1595,7 @@ uniform vec3 lensBorderColor;
 uniform float lensBorderRadius;
 
 // color palette
-uniform vec3 colors[6];
+uniform vec3 colors[16];
 
 bool frag_in_lens_bounds(vec2 vTexCoord) {
   // Check membership in what is (not visually, but effectively) an ellipse.
@@ -1601,7 +1621,7 @@ float get_use_color_float(vec2 vTexCoord, int channelIndex) {
   return float(int((inLensAndUseLens && channelIndex == lensSelection) || (!inLensAndUseLens)));
  
 }
-void mutate_color(inout vec3 rgb, float intensity0, float intensity1, float intensity2, float intensity3, float intensity4, float intensity5, vec2 vTexCoord){
+void mutate_color(inout vec3 rgb, float intensity0, float intensity1, float intensity2, float intensity3, float intensity4, float intensity5, float intensity6, float intensity7, float intensity8, float intensity9, float intensity10, float intensity11, float intensity12, float intensity13, float intensity14, float intensity15, vec2 vTexCoord){
   float useColorValue = 0.;
 
   useColorValue = get_use_color_float(vTexCoord, 0);
@@ -1621,6 +1641,36 @@ void mutate_color(inout vec3 rgb, float intensity0, float intensity1, float inte
 
   useColorValue = get_use_color_float(vTexCoord, 5);
   rgb += max(0., min(1., intensity5)) * max(vec3(colors[5]), (1. - useColorValue) * vec3(1., 1., 1.));
+  
+  useColorValue = get_use_color_float(vTexCoord, 6);
+  rgb += max(0., min(1., intensity6)) * max(vec3(colors[6]), (1. - useColorValue) * vec3(1., 1., 1.));
+  
+  useColorValue = get_use_color_float(vTexCoord, 7);
+  rgb += max(0., min(1., intensity7)) * max(vec3(colors[7]), (1. - useColorValue) * vec3(1., 1., 1.));
+  
+  useColorValue = get_use_color_float(vTexCoord, 8);
+  rgb += max(0., min(1., intensity8)) * max(vec3(colors[8]), (1. - useColorValue) * vec3(1., 1., 1.));
+  
+  useColorValue = get_use_color_float(vTexCoord, 9);
+  rgb += max(0., min(1., intensity9)) * max(vec3(colors[9]), (1. - useColorValue) * vec3(1., 1., 1.));
+  
+  useColorValue = get_use_color_float(vTexCoord, 10);
+  rgb += max(0., min(1., intensity10)) * max(vec3(colors[10]), (1. - useColorValue) * vec3(1., 1., 1.));
+  
+  useColorValue = get_use_color_float(vTexCoord, 11);
+  rgb += max(0., min(1., intensity11)) * max(vec3(colors[11]), (1. - useColorValue) * vec3(1., 1., 1.));
+  
+  useColorValue = get_use_color_float(vTexCoord, 12);
+  rgb += max(0., min(1., intensity12)) * max(vec3(colors[12]), (1. - useColorValue) * vec3(1., 1., 1.));
+  
+  useColorValue = get_use_color_float(vTexCoord, 13);
+  rgb += max(0., min(1., intensity13)) * max(vec3(colors[13]), (1. - useColorValue) * vec3(1., 1., 1.));
+  
+  useColorValue = get_use_color_float(vTexCoord, 14);
+  rgb += max(0., min(1., intensity14)) * max(vec3(colors[14]), (1. - useColorValue) * vec3(1., 1., 1.));
+  
+  useColorValue = get_use_color_float(vTexCoord, 15);
+  rgb += max(0., min(1., intensity15)) * max(vec3(colors[15]), (1. - useColorValue) * vec3(1., 1., 1.));
 }
 `;
 const lens = {
@@ -1629,7 +1679,7 @@ const lens = {
   inject: {
     "fs:DECKGL_MUTATE_COLOR": `
    vec3 rgb = rgba.rgb;
-   mutate_color(rgb, intensity0, intensity1, intensity2, intensity3, intensity4, intensity5, vTexCoord);
+   mutate_color(rgb, intensity0, intensity1, intensity2, intensity3, intensity4, intensity5, intensity6, intensity7, intensity8, intensity9, intensity10, intensity11, intensity12, intensity13, intensity14, intensity15, vTexCoord);
    rgba = vec4(rgb, 1.);
   `,
     "fs:#main-end": `
@@ -1794,10 +1844,10 @@ BaseExtension$1.extensionName = "BaseExtension";
 BaseExtension$1.defaultProps = defaultProps$1;
 
 const _BEFORE_RENDER$5 = "";
-const _RENDER$5 = `  float intensityArray[6] = float[6](intensityValue0, intensityValue1, intensityValue2, intensityValue3, intensityValue4, intensityValue5);
+const _RENDER$5 = `  float intensityArray[16] = float[16](intensityValue0, intensityValue1, intensityValue2, intensityValue3, intensityValue4, intensityValue5, intensityValue6, intensityValue7, intensityValue8, intensityValue9, intensityValue10, intensityValue11, intensityValue12, intensityValue13, intensityValue14, intensityValue15);
   float total = 0.0;
 
-  for(int i = 0; i < 6; i++) {
+  for(int i = 0; i < 16; i++) {
     total += intensityArray[i];
   }
   // Do not go past 1 in opacity/colormap value.
@@ -1823,18 +1873,18 @@ const AdditiveBlendExtension$1 = class extends BaseExtension$1 {
 };
 AdditiveBlendExtension$1.extensionName = "AdditiveBlendExtension";
 
-const _BEFORE_RENDER$4 = `  float maxVals[6] = float[6](-1.0, -1.0, -1.0, -1.0, -1.0, -1.0);
+const _BEFORE_RENDER$4 = `  float maxVals[16] = float[16](-1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0);
 `;
-const _RENDER$4 = `  float intensityArray[6] = float[6](intensityValue0, intensityValue1, intensityValue2, intensityValue3, intensityValue4, intensityValue5);
+const _RENDER$4 = `  float intensityArray[16] = float[16](intensityValue0, intensityValue1, intensityValue2, intensityValue3, intensityValue4, intensityValue5, intensityValue6, intensityValue7, intensityValue8, intensityValue9, intensityValue10, intensityValue11, intensityValue12, intensityValue13, intensityValue14, intensityValue15);
 
-  for(int i = 0; i < 6; i++) {
+  for(int i = 0; i < 16; i++) {
     if(intensityArray[i] > maxVals[i]) {
       maxVals[i] = intensityArray[i];
     }
   }
 `;
 const _AFTER_RENDER$4 = `  float total = 0.0;
-  for(int i = 0; i < 6; i++) {
+  for(int i = 0; i < 16; i++) {
     total += maxVals[i];
   }
   // Do not go past 1 in opacity/colormap value.
@@ -1849,18 +1899,18 @@ const MaximumIntensityProjectionExtension$1 = class extends BaseExtension$1 {
 };
 MaximumIntensityProjectionExtension$1.extensionName = "MaximumIntensityProjectionExtension";
 
-const _BEFORE_RENDER$3 = `  float minVals[6] = float[6](1. / 0., 1. / 0., 1. / 0., 1. / 0., 1. / 0., 1. / 0.);
+const _BEFORE_RENDER$3 = `  float minVals[16] = float[16](1. / 0., 1. / 0., 1. / 0., 1. / 0., 1. / 0., 1. / 0., 1. / 0., 1. / 0., 1. / 0., 1. / 0., 1. / 0., 1. / 0., 1. / 0., 1. / 0., 1. / 0., 1. / 0.);
 `;
-const _RENDER$3 = `  float intensityArray[6] = float[6](intensityValue0, intensityValue1, intensityValue2, intensityValue3, intensityValue4, intensityValue5);
+const _RENDER$3 = `  float intensityArray[16] = float[16](intensityValue0, intensityValue1, intensityValue2, intensityValue3, intensityValue4, intensityValue5, intensityValue6, intensityValue7, intensityValue8, intensityValue9, intensityValue10, intensityValue11, intensityValue12, intensityValue13, intensityValue14, intensityValue15);
 
-  for(int i = 0; i < 6; i++) {
+  for(int i = 0; i < 16; i++) {
     if(intensityArray[i] < minVals[i]) {
       minVals[i] = intensityArray[i];
     }
   }
 `;
 const _AFTER_RENDER$3 = `  float total = 0.0;
-  for(int i = 0; i < 6; i++) {
+  for(int i = 0; i < 16; i++) {
     total += minVals[i];
   }
   // Do not go past 1 in opacity/colormap value.
@@ -1908,9 +1958,9 @@ BaseExtension.defaultProps = defaultProps;
 const _BEFORE_RENDER$2 = ``;
 const _RENDER$2 = `  vec3 rgbCombo = vec3(0.0);
   vec3 hsvCombo = vec3(0.0);
-  float intensityArray[6] = float[6](intensityValue0, intensityValue1, intensityValue2, intensityValue3, intensityValue4, intensityValue5);
+  float intensityArray[16] = float[16](intensityValue0, intensityValue1, intensityValue2, intensityValue3, intensityValue4, intensityValue5, intensityValue6, intensityValue7, intensityValue8, intensityValue9, intensityValue10, intensityValue11, intensityValue12, intensityValue13, intensityValue14, intensityValue15);
   float total = 0.0;
-  for(int i = 0; i < 6; i++) {
+  for(int i = 0; i < 16; i++) {
     float intensityValue = intensityArray[i];
     rgbCombo += max(0.0, min(1.0, intensityValue)) * colors[i];
     total += intensityValue;
@@ -1935,18 +1985,18 @@ const AdditiveBlendExtension = class extends BaseExtension {
 };
 AdditiveBlendExtension.extensionName = "AdditiveBlendExtension";
 
-const _BEFORE_RENDER$1 = `  float maxVals[6] = float[6](-1.0, -1.0, -1.0, -1.0, -1.0, -1.0);
+const _BEFORE_RENDER$1 = `  float maxVals[16] = float[16](-1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0);
 `;
-const _RENDER$1 = `  float intensityArray[6] = float[6](intensityValue0, intensityValue1, intensityValue2, intensityValue3, intensityValue4, intensityValue5);
+const _RENDER$1 = `  float intensityArray[16] = float[16](intensityValue0, intensityValue1, intensityValue2, intensityValue3, intensityValue4, intensityValue5, intensityValue6, intensityValue7, intensityValue8, intensityValue9, intensityValue10, intensityValue11, intensityValue12, intensityValue13, intensityValue14, intensityValue15);
 
-  for(int i = 0; i < 6; i++) {
+  for(int i = 0; i < 16; i++) {
     if(intensityArray[i] > maxVals[i]) {
       maxVals[i] = intensityArray[i];
     }
   }
 `;
 const _AFTER_RENDER$1 = `  vec3 rgbCombo = vec3(0.0);
-  for(int i = 0; i < 6; i++) {
+  for(int i = 0; i < 16; i++) {
     rgbCombo += max(0.0, min(1.0, maxVals[i])) * vec3(colors[i]);
   }
   color = vec4(rgbCombo, 1.0);
@@ -1959,18 +2009,18 @@ const MaximumIntensityProjectionExtension = class extends BaseExtension {
 };
 MaximumIntensityProjectionExtension.extensionName = "MaximumIntensityProjectionExtension";
 
-const _BEFORE_RENDER = `  float minVals[6] = float[6](1. / 0., 1. / 0., 1. / 0., 1. / 0., 1. / 0., 1. / 0.);
+const _BEFORE_RENDER = `  float minVals[16] = float[16](1. / 0., 1. / 0., 1. / 0., 1. / 0., 1. / 0., 1. / 0., 1. / 0., 1. / 0., 1. / 0., 1. / 0., 1. / 0., 1. / 0., 1. / 0., 1. / 0., 1. / 0., 1. / 0.);
 `;
-const _RENDER = `  float intensityArray[6] = float[6](intensityValue0, intensityValue1, intensityValue2, intensityValue3, intensityValue4, intensityValue5);
+const _RENDER = `  float intensityArray[16] = float[16](intensityValue0, intensityValue1, intensityValue2, intensityValue3, intensityValue4, intensityValue5, intensityValue6, intensityValue7, intensityValue8, intensityValue9, intensityValue10, intensityValue11, intensityValue12, intensityValue13, intensityValue14, intensityValue15);
 
-  for(int i = 0; i < 6; i++) {
+  for(int i = 0; i < 16; i++) {
     if(intensityArray[i] < minVals[i]) {
       minVals[i] = intensityArray[i];
     }
   }
 `;
 const _AFTER_RENDER = `  vec3 rgbCombo = vec3(0.0);
-  for(int i = 0; i < 6; i++) {
+  for(int i = 0; i < 16; i++) {
     rgbCombo += max(0.0, min(1.0, minVals[i])) * vec3(colors[i]);
   }
   color = vec4(rgbCombo, 1.0);

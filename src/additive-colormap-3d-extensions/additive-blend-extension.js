@@ -3,10 +3,10 @@ import BaseExtension from './base-extension';
 const _BEFORE_RENDER = '';
 
 const _RENDER = `\
-  float intensityArray[6] = float[6](intensityValue0, intensityValue1, intensityValue2, intensityValue3, intensityValue4, intensityValue5);
+  float intensityArray[16] = float[16](intensityValue0, intensityValue1, intensityValue2, intensityValue3, intensityValue4, intensityValue5, intensityValue6, intensityValue7, intensityValue8, intensityValue9, intensityValue10, intensityValue11, intensityValue12, intensityValue13, intensityValue14, intensityValue15);
   float total = 0.0;
 
-  for(int i = 0; i < 6; i++) {
+  for(int i = 0; i < 16; i++) {
     total += intensityArray[i];
   }
   // Do not go past 1 in opacity/colormap value.
