@@ -20,11 +20,11 @@
     "@deck.gl/core": "~8.8.6"
   },
   "dependencies": {
-    "@vivjs/constants": "0.13.6"
+    "@vivjs/constants": "git+https://github.com/develrocket/hdms-viv-constants.git"
   },
   "devDependencies": {
     "glsl-colormap": "^1.0.1",
-    "@vivjs/types": "0.13.6"
+    "@vivjs/types": "git+https://github.com/develrocket/hdms-viv-types.git"
   },
   "unbuild": {
     "entries": [
